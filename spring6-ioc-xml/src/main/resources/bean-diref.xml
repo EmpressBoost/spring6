@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="studentp" class="com.atguigu.spring6.iocxml.dimap.Student"
+    p:sid="2023" p:sname="dandan" p:lessonList-ref="lessonList" p:teacherMap-ref="map"></bean>
+
+   <bean id="student" class="com.atguigu.spring6.iocxml.dimap.Student">
+       <property name="sid" value="10000"></property>
+       <property name="sname" value="lucy"></property>
+       <property name="lessonList" ref="lessonList"></property>
+       <property name="teacherMap" ref="map"></property>
+   </bean>
+    <util:list id="lessonList">
+        <ref bean="lesson1"></ref>
+        <ref bean="lesson2"></ref>
+    </util:list>
+
+    <util:map id="map">
+        <entry>
+            <key>
+                <value>10010</value>
+            </key>
+            <ref bean="techer1"></ref>
+        </entry>
+        <entry>
+            <key>
+                <value>10011</value>
+            </key>
+            <ref bean="techer2"></ref>
+        </entry>
+    </util:map>
+    <bean id="lesson1" class="com.atguigu.spring6.iocxml.dimap.Lesson">
+        <property name="lname" value="java"></property>
+    </bean>
+    <bean id="lesson2" class="com.atguigu.spring6.iocxml.dimap.Lesson">
+        <property name="lname" value="C++"></property>
+    </bean>
+
+    <bean id="techer1" class="com.atguigu.spring6.iocxml.dimap.Teacher">
+        <property name="tid" value="100"></property>
+        <property name="tname" value="西门讲师"></property>
+    </bean>
+    <bean id="techer2" class="com.atguigu.spring6.iocxml.dimap.Teacher">
+        <property name="tid" value="200"></property>
+        <property name="tname" value="欧阳讲师"></property>
+    </bean>
+</beans>

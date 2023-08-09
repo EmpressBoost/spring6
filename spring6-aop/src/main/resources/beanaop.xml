@@ -1,0 +1,25 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--    开启组件扫描-->
+    <context:component-scan base-package="com.atguigu.spring6.aop.xmlaop"></context:component-scan>
+
+    <aop:config>
+        <aop:aspect ref="logAspect">
+            <aop:pointcut id="poitcut" expression="execution(* com.atguigu.spring6.aop.xmlaop.CalculatorImpl.*(..))"/>
+            <aop:before method="beforeMethod" pointcut-ref="poitcut"></aop:before>
+            <aop:after method="afterMethod" pointcut-ref="poitcut"></aop:after>
+            <aop:after-returning method="afterReturningMethod" pointcut-ref="poitcut" returning="rel"></aop:after-returning>
+            <aop:after-throwing method="afterThrowingMethod" pointcut-ref="poitcut" throwing="ex"></aop:after-throwing>
+            <aop:around method="aroundMethod" pointcut-ref="poitcut"></aop:around>
+        </aop:aspect>
+    </aop:config>
+</beans>
